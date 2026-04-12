@@ -1,0 +1,59 @@
+{
+  "allowedDirs": [],
+  "destructiveBashCommands": [
+    // filesystem operations
+    "rm",
+    "mv",
+    "cp",
+    "mkdir",
+    "touch",
+    "chmod",
+    "chown",
+    "sudo",
+    "tee",
+    "sed -i",
+    "truncate",
+    "dd",
+    ">",
+
+    // kubectl destructive operations
+    "kubectl delete",
+    "kubectl apply",
+    "kubectl patch",
+    "kubectl edit",
+    "kubectl replace",
+    "kubectl scale",
+    "kubectl rollout",
+    "kubectl drain",
+    "kubectl cordon",
+    "kubectl taint",
+    "kubectl label",
+    "kubectl annotate",
+    "kubectl exec",
+
+    // terraform destructive operations
+    "terraform apply",
+    "terraform destroy",
+    "terraform import",
+    "terraform state mv",
+    "terraform state rm",
+    "terraform state push",
+    "terraform taint",
+    "terraform untaint",
+
+    // git destructive operations
+    "git push",
+    "git commit",
+    "git reset",
+    "git checkout",
+    "git branch -d",
+    "git branch -D",
+    "git merge",
+    "git rebase",
+    "git stash drop",
+    "git tag -d",
+    "git clean",
+    "git push --force",
+    "git push -f"
+  ]
+}
