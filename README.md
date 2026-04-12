@@ -7,4 +7,4 @@ stages and a learning experiment.
 ### Saurabh Hirani
 
 1. [pi vim extension](./saurabh-hirani/.pi/agent/extensions/pi-vim.ts)
-2. [pi permission gate + vimdiff extension](./saurabh-hirani/.pi/agent/extensions/permission-gate.ts)
+2. [pi permission gate + nvim diff extension](./saurabh-hirani/.pi/agent/extensions/permission-gate.ts)
