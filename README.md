@@ -8,3 +8,7 @@ stages and a learning experiment.
 
 1. [pi vim extension](./saurabh-hirani/.pi/agent/extensions/pi-vim.ts)
 2. [pi permission gate + nvim diff extension](./saurabh-hirani/.pi/agent/extensions/permission-gate.ts)
+
+### Srijan Shukla
+
+1. [rtk extension](./srijanshukla18/.pi/agent/extensions/rtk.ts)
