@@ -12,3 +12,7 @@ stages and a learning experiment.
 ### Srijan Shukla
 
 1. [rtk extension](./srijanshukla18/.pi/agent/extensions/rtk.ts) _(requires [`rtk`](https://github.com/rtk-ai/rtk) to be installed)_
+
+### Arjun Mahishi
+
+1. [web extension](./arjunmahishi/.pi/agent/extensions/web.ts)
