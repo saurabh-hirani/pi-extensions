@@ -3,3 +3,8 @@ who want to learn pi together.
 
 There are no specific contribution guidelines as the project is in its nascent
 stages and a learning experiment.
+
+### Saurabh Hirani
+
+1. [pi vim extension](./saurabh-hirani/.pi/agent/extensions/pi-vim.ts)
+2. [pi permission gate + vimdiff extension](./saurabh-hirani/.pi/agent/extensions/permission-gate.ts)
