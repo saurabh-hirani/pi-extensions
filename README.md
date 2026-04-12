@@ -22,6 +22,7 @@ from here that you have not authored.
 ### Srijan Shukla
 
 1. [rtk extension](./srijanshukla18/.pi/agent/extensions/rtk.ts) _(requires [`rtk`](https://github.com/rtk-ai/rtk) to be installed)_
+2. [token speed extension](./srijanshukla18/.pi/agent/extensions/token-speed.ts) (live assistant tokens/s on statusline)
 
 ### Arjun Mahishi
 
