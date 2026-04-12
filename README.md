@@ -11,4 +11,4 @@ stages and a learning experiment.
 
 ### Srijan Shukla
 
-1. [rtk extension](./srijanshukla18/.pi/agent/extensions/rtk.ts) _(requires `rtk` to be installed)_
+1. [rtk extension](./srijanshukla18/.pi/agent/extensions/rtk.ts) _(requires [`rtk`](https://github.com/rtk-ai/rtk) to be installed)_
