@@ -1,3 +1,11 @@
+/**
+ * RTK (Rewrite To Kit) Extension
+ *
+ * Intercepts bash tool calls and rewrites common CLI commands
+ * (git, grep, cat, vitest, eslint, docker, kubectl, etc.) into
+ * their `rtk` equivalents. Shell meta-characters are left untouched.
+ */
+
 import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
 
 const SHELL_META = /[;&|<>`\n\r]|<<|\$\(/;

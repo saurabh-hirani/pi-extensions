@@ -1,3 +1,15 @@
+/**
+ * Feature End Extension
+ *
+ * Runs post-feature cleanup as a sequence of gated LLM prompts:
+ *   - fallback: Remove overly-defensive AI-generated code
+ *   - dead-code: Remove unused code paths
+ *   - docs: Update markdown documentation
+ *
+ * Each step gets its own LLM turn with a STEP_DONE / STEP_SKIPPED gate
+ * to ensure no step is silently dropped.
+ */
+
 import type {
   ExtensionAPI,
   ExtensionCommandContext,

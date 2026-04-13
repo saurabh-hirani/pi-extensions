@@ -1,3 +1,14 @@
+/**
+ * Web Search & Fetch Extension
+ *
+ * Provides two tools:
+ *   - web_search: Search the web using Bing RSS, returns top 5 results
+ *   - web_fetch: Fetch and extract readable text from any URL
+ *
+ * HTML responses are automatically parsed to plain text.
+ * Non-HTML responses are returned as-is.
+ */
+
 import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
 import { Type } from "@sinclair/typebox";
 

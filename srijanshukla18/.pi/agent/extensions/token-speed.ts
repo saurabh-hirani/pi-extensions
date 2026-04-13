@@ -1,3 +1,11 @@
+/**
+ * Token Speed Extension
+ *
+ * Displays real-time output token throughput (mtoks/s) in the status bar
+ * during assistant responses. Uses observed usage data when available,
+ * falls back to estimated token counts otherwise.
+ */
+
 import { estimateTokens, type ExtensionAPI, type ExtensionContext } from "@mariozechner/pi-coding-agent";
 
 const STATUS_KEY = "mtoks";
