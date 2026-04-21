@@ -28,3 +28,7 @@ from here that you have not authored.
 ### Arjun Mahishi
 
 1. [web extension](./arjunmahishi/.pi/agent/extensions/web.ts)
+
+### importhuman
+
+1. [footer extension](./importhuman/.pi/agent/extensions/footer.ts)
