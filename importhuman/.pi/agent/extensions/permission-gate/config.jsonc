@@ -1,0 +1,66 @@
+{
+  "allowedPaths": [
+    "~/.pi/**",
+    "~/.agents/**",
+    "~/.nvm/versions/node/**/@mariozechner/pi-coding-agent/**"
+  ],
+  "sensitivePaths": [
+    "~/.pi/agent/extensions/permission-gate/config.jsonc"
+  ],
+  "disallowedPaths": [
+    "~/**/.env",
+    "~/**/.env.*",
+    "~/**/*.pem"
+  ],
+
+  "allowedBashCommands": [
+    "pwd",
+    "ls",
+    "find",
+    "rg",
+    "grep",
+    "git status",
+    "git diff",
+    "git log",
+    "git branch",
+    "git show",
+    "git rev-parse",
+    "git ls-files",
+    "echo",
+    "which",
+    "command -v",
+    "head",
+    "tail",
+    "wc",
+    "sort",
+    "uniq",
+    "cut",
+    "awk",
+    "jq"
+  ],
+  "sensitiveBashCommands": [
+    "git commit",
+    "git push",
+    "rm",
+    "mv",
+    "cp",
+    ">"
+  ],
+  "disallowedBashCommands": [
+    "sudo",
+    "dd",
+    "mkfs",
+    "shutdown",
+    "reboot",
+    "rm -rf /",
+    "rm -rf ~",
+    "git push --force",
+    "git reset --hard"
+  ],
+
+  "allowedTools": [],
+  "sensitiveTools": [],
+  "disallowedTools": [],
+
+  "unknownToolsPolicy": "prompt"
+}

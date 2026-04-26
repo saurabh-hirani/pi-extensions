@@ -28,3 +28,11 @@ from here that you have not authored.
 ### Arjun Mahishi
 
 1. [web extension](./arjunmahishi/.pi/agent/extensions/web.ts)
+
+### importhuman
+
+1. [cmux extension](./importhuman/.pi/agent/extensions/cmux.ts)
+2. [footer extension](./importhuman/.pi/agent/extensions/footer.ts)
+3. [notify extension](./importhuman/.pi/agent/extensions/notify.ts)
+4. [permission-gate extension](./importhuman/.pi/agent/extensions/permission-gate/README.md)
+5. [web-search extension](./importhuman/.pi/agent/extensions/web-search/README.md)

@@ -6,7 +6,7 @@ TARGET_DIR="$HOME/.pi/agent/extensions"
 
 # Write extensions to a file so we can index by line number
 EXT_FILE=$(mktemp)
-find "$REPO_DIR" -path "*/extensions/*.ts" -type f | sort > "$EXT_FILE"
+find "$REPO_DIR" \( -path "*/extensions/*.ts" -o -path "*/extensions/*/index.ts" \) -type f | sort > "$EXT_FILE"
 count=$(wc -l < "$EXT_FILE" | tr -d ' ')
 trap "rm -f $EXT_FILE" EXIT
 
@@ -33,11 +33,21 @@ render() {
     echo ""
     i=1
     while IFS= read -r ext; do
-        filename=$(basename "$ext" .ts)
+        if [ "$(basename "$ext")" = "index.ts" ]; then
+            filename=$(basename "$(dirname "$ext")")
+        else
+            filename=$(basename "$ext" .ts)
+        fi
         author=$(echo "$ext" | sed "s|$REPO_DIR/||" | cut -d'/' -f1)
         color=$(author_color "$author")
 
-        if [ -L "$TARGET_DIR/$(basename "$ext")" ]; then
+        if [ "$(basename "$ext")" = "index.ts" ]; then
+            target="$TARGET_DIR/$filename"
+        else
+            target="$TARGET_DIR/$(basename "$ext")"
+        fi
+
+        if [ -L "$target" ]; then
             printf "  [x] %s) ${color}%s${RESET} • %s\n" "$i" "$author" "$filename"
         else
             printf "  [ ] %s) ${color}%s${RESET} • %s\n" "$i" "$author" "$filename"
@@ -50,11 +60,19 @@ render() {
 
 toggle() {
     ext=$(sed -n "${1}p" "$EXT_FILE")
-    filename=$(basename "$ext")
-    if [ -L "$TARGET_DIR/$filename" ]; then
-        rm "$TARGET_DIR/$filename"
+    if [ "$(basename "$ext")" = "index.ts" ]; then
+        source=$(dirname "$ext")
+        target="$TARGET_DIR/$(basename "$source")"
     else
-        ln -s "$ext" "$TARGET_DIR/$filename"
+        source="$ext"
+        target="$TARGET_DIR/$(basename "$ext")"
+    fi
+
+    if [ -L "$target" ]; then
+        rm "$target"
+    else
+        mkdir -p "$TARGET_DIR"
+        ln -s "$source" "$target"
     fi
 }
 
