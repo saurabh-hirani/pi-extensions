@@ -13,7 +13,7 @@
  */
 
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
-import { isToolCallEventType } from "@earendil-works/pi-coding-agent";
+
 
 const PLAN_PROMPT_INJECTION = `
 ## PLAN MODE (READ-ONLY)
@@ -96,16 +96,6 @@ export default function (pi: ExtensionAPI) {
       };
     }
 
-    // Confirm bash commands
-    if (isToolCallEventType("bash", event)) {
-      const cmd = event.input.command;
-      const ok = await ctx.ui.confirm(
-        "Plan Mode — Bash",
-        `Allow command?\n\n$ ${cmd}`
-      );
-      if (!ok) {
-        return { block: true, reason: "Bash command denied by user in plan mode." };
-      }
-    }
+
   });
 }
