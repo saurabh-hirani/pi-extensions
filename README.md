@@ -27,7 +27,11 @@ from here that you have not authored.
 
 ### Arjun Mahishi
 
-1. [web extension](./arjunmahishi/.pi/agent/extensions/web.ts)
+1. [cost-tracker extension](./arjunmahishi/.pi/agent/extensions/cost-tracker.ts) — reports token usage and per-turn costs with sparkline chart
+2. [plan-mode extension](./arjunmahishi/.pi/agent/extensions/plan-mode.ts) — toggles between plan and build modes
+3. [status-line extension](./arjunmahishi/.pi/agent/extensions/status-line.ts) — single-line footer compositor that renders all extension statuses inline
+4. [prune-tool-results extension](./arjunmahishi/.pi/agent/extensions/prune-tool-results.ts) — strips old tool result content from LLM context to prevent geometric cost growth
+5. [subagent extension](./arjunmahishi/.pi/agent/extensions/subagent) — inherit parent model when agent config has no model override
 
 ### importhuman
 

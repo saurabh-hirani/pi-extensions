@@ -264,6 +264,7 @@ async function runSingleAgent(
 	agentName: string,
 	task: string,
 	cwd: string | undefined,
+	parentModel: string | undefined,
 	step: number | undefined,
 	signal: AbortSignal | undefined,
 	onUpdate: OnUpdateCallback | undefined,
@@ -286,7 +287,8 @@ async function runSingleAgent(
 	}
 
 	const args: string[] = ["--mode", "json", "-p", "--no-session"];
-	if (agent.model) args.push("--model", agent.model);
+	const effectiveModel = agent.model ?? parentModel;
+	if (effectiveModel) args.push("--model", effectiveModel);
 	if (agent.tools && agent.tools.length > 0) args.push("--tools", agent.tools.join(","));
 
 	let tmpPromptDir: string | null = null;
@@ -525,6 +527,8 @@ export default function (pi: ExtensionAPI) {
 				}
 			}
 
+			const parentModel = ctx.model ? `${ctx.model.provider}/${ctx.model.id}` : undefined;
+
 			if (params.chain && params.chain.length > 0) {
 				const results: SingleResult[] = [];
 				let previousOutput = "";
@@ -554,6 +558,7 @@ export default function (pi: ExtensionAPI) {
 						step.agent,
 						taskWithContext,
 						step.cwd,
+						parentModel,
 						i + 1,
 						signal,
 						chainUpdate,
@@ -626,6 +631,7 @@ export default function (pi: ExtensionAPI) {
 						t.agent,
 						t.task,
 						t.cwd,
+						parentModel,
 						undefined,
 						signal,
 						// Per-task update callback
@@ -668,6 +674,7 @@ export default function (pi: ExtensionAPI) {
 					params.agent,
 					params.task,
 					params.cwd,
+					parentModel,
 					undefined,
 					signal,
 					onUpdate,
@@ -1008,6 +1015,31 @@ export default function (pi: ExtensionAPI) {
 
 			const text = result.content[0];
 			return new Text(text?.type === "text" ? text.text : "(no output)", 0, 0);
+		},
+	});
+
+	pi.registerCommand("subagent", {
+		description: "Delegate a task to a sub-agent: /subagent <agent> <task>",
+		handler: async (args, ctx) => {
+			if (!args?.trim()) {
+				const discovery = discoverAgents(ctx.cwd, "user");
+				const list = discovery.agents.length
+					? discovery.agents.map((a) => `  ${a.name} (${a.source}) \u2014 ${a.description}`).join("\n")
+					: "  (none found)";
+				ctx.ui.notify(`Available agents:\n${list}`, "info");
+				return;
+			}
+
+			const spaceIdx = args.indexOf(" ");
+			if (spaceIdx === -1) {
+				ctx.ui.notify("Usage: /subagent <agent> <task>", "warning");
+				return;
+			}
+
+			const agentName = args.slice(0, spaceIdx).trim();
+			const task = args.slice(spaceIdx + 1).trim();
+
+			pi.sendUserMessage(`Use subagent to run agent "${agentName}" with task: ${task}`);
 		},
 	});
 }
